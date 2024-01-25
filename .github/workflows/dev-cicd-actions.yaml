@@ -7,29 +7,13 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a databricks notebook
-        env:
-          GITBRANCH: "main"
-          DBCLIPATH: "/usr/local/bin"
-	  JQPATH: "/usr/bin"
-	  JOBPREFIX: "db"
-	  BUNDLETARGET: "dev"
       - name: Check out repository
         uses: actions/checkout@v3
       # Install databricks CLI 
-
       - name: Install databricks CLI
-	    run: sudo apt-get update
-		run: sudo apt install plocate -y
-		run: sudo apt-get install unzip -y
-		run: sudo apt-get install openjdk-17-jre -y
-		run: sudo apt-get install junit -y
-		run: |
+        run: |
          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh  
-		run: sudo apt-get install jq -y
-		run: sudo apt install pip -y
-		run: pip install --upgrade wheel
-		
+
       - name: Databricks CLI version
         run: databricks --version
      
@@ -39,7 +23,7 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         uses: databricks/run-notebook@v0.0.3
         with:
-          local-notebook-path: .github/workflows/dabdemo_notebook.py
+          local-notebook-path: .github/workflows/dev
           new-cluster-json: >
            {
              "num_workers": 1,
