@@ -7,13 +7,13 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-	  - name: Run a databricks notebook
+      - name: Run a databricks notebook
         env:
           GITBRANCH: "main"
           DBCLIPATH: "/usr/local/bin"
-		  JQPATH: "/usr/bin"
-		  JOBPREFIX: "db"
-		  BUNDLETARGET: "dev"
+	  JQPATH: "/usr/bin"
+	  JOBPREFIX: "db"
+	  BUNDLETARGET: "dev"
       - name: Check out repository
         uses: actions/checkout@v3
       # Install databricks CLI 
