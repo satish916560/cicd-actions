@@ -2,7 +2,7 @@ name: databricks-cicd
 
 on:
  push:
-
+runs-on: self-hosted
 jobs:
   main:
     runs-on: ubuntu-latest
